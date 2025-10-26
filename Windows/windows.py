@@ -1,14 +1,13 @@
 '''
 This is my script for CyberPatriot.
-Speciffically my windows script to automate password policies.
-Will automate more eventually
+Speciffically my windows script to automate password policies and services.
+It is a little messy but it gets the job done
 '''
 
 import os
-import sys
-import win32security as security
-import win32net as net
-import win32netcon as netcon
+import win32security as security # type: ignore
+import win32net as net # type: ignore
+import win32netcon as netcon # type: ignore
 import tempfile
 import subprocess
 import re
@@ -31,8 +30,8 @@ def setPasswordPolicy():
 
     print("               #     Password Policy    # ")
     print(f'Min Password Length:           {currentPassword['min_passwd_len']}')
-    print(f'Max Password Age:              {currentPassword['max_passwd_age'] / 3600 * 24}')
-    print(f'Min Password Age:              {currentPassword['min_passwd_age'] / 3600 * 24}')
+    print(f'Max Password Age:              {currentPassword['max_passwd_age'] / 3600 / 24}')
+    print(f'Min Password Age:              {currentPassword['min_passwd_age'] / 3600 / 24}')
     print(f'Password History:              {currentPassword['password_hist_len']}')
 
     # Get Account Lockout Policy
@@ -204,6 +203,7 @@ def main():
 def exit():
     print("Check out my Github for more of my projects and scripts at: https://github.com/ShinyDuck21")
     input("Press Enter to exit...")
+    exit(0)
 
 if __name__ == "__main__":
     # === Main Logic ===
